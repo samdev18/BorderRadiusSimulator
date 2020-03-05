@@ -88,7 +88,6 @@ function gerarCodigo(option, master, tl_radius, tr_radius, br_radius, bl_radius)
                     if (bl_radius != 0) code_bl += declaration_bl + bl_radius + (bl_radius == 0 ? '' : "px") + ";\n";
                 } else {
                     if (non_master_radius != 0) code_short += declaration_short + non_master_radius + (non_master_radius == 0 ? '' : "px") + ";\n";
-                    console.log(tl_radius);
                     if (tl_radius && tl_radius != non_master_radius) code_tl += declaration_tl + tl_radius + (tl_radius == 0 ? '' : "px") + ";\n";
                     if (tr_radius && tr_radius != non_master_radius) code_tr += declaration_tr + tr_radius + (tr_radius == 0 ? '' : "px") + ";\n";
                     if (br_radius && br_radius != non_master_radius) code_br += declaration_br + br_radius + (br_radius == 0 ? '' : "px") + ";\n";
@@ -96,7 +95,6 @@ function gerarCodigo(option, master, tl_radius, tr_radius, br_radius, bl_radius)
                 }
             }
         } else if (radii.compact().uniq().length == 3 || radii.compact().uniq().length == 4) {
-            console.log(tl_radius);
             if (tl_radius && tl_radius != 0) code_tl += declaration_tl + tl_radius + (tl_radius == 0 ? '' : "px") + ";\n";
             if (tr_radius && tr_radius != 0) code_tr += declaration_tr + tr_radius + (tr_radius == 0 ? '' : "px") + ";\n";
             if (br_radius && br_radius != 0) code_br += declaration_br + br_radius + (br_radius == 0 ? '' : "px") + ";\n";
@@ -108,10 +106,10 @@ function gerarCodigo(option, master, tl_radius, tr_radius, br_radius, bl_radius)
 }
 
 function atalizarTextArea() {
-    var tl_radius = $('input_tl').value.strip();
-    var tr_radius = $('input_tr').value.strip();
-    var br_radius = $('input_br').value.strip();
-    var bl_radius = $('input_bl').value.strip();
+    var tl_radius = $('input_topLeft').value.strip();
+    var tr_radius = $('input_topRight').value.strip();
+    var br_radius = $('input_bottomRight').value.strip();
+    var bl_radius = $('input_bottomLeft').value.strip();
 
     master_radius = master_radius.strip();
 
@@ -124,11 +122,10 @@ function atalizarTextArea() {
 }
 
 function aplicarRadio() {
-    var tl_radius = $('input_tl').value > 125 ? 125 : (!$('input_tl').value ? 0 : $('input_tl').value.strip());
-    var tr_radius = $('input_tr').value > 125 ? 125 : (!$('input_tr').value ? 0 : $('input_tr').value.strip());
-    var br_radius = $('input_br').value > 125 ? 125 : (!$('input_br').value ? 0 : $('input_br').value.strip());
-    var bl_radius = $('input_bl').value > 125 ? 125 : (!$('input_bl').value ? 0 : $('input_bl').value.strip());
-    console.log(tl_radius.toString().includes("%") ? tr_radius : tr_radius + 'px');
+    var tl_radius = $('input_topLeft').value > 125 ? 125 : (!$('input_topLeft').value ? 0 : $('input_topLeft').value.strip());
+    var tr_radius = $('input_topRight').value > 125 ? 125 : (!$('input_topRight').value ? 0 : $('input_topRight').value.strip());
+    var br_radius = $('input_bottomRight').value > 125 ? 125 : (!$('input_bottomRight').value ? 0 : $('input_bottomRight').value.strip());
+    var bl_radius = $('input_bottomLeft').value > 125 ? 125 : (!$('input_bottomLeft').value ? 0 : $('input_bottomLeft').value.strip());
     if ($('surface').style.borderTopLeftRadius != 'undefined') {
         $('surface').style.borderTopLeftRadius = tl_radius.toString().includes("%") ? tl_radius : tl_radius + 'px';
         $('surface').style.borderTopRightRadius = tr_radius.toString().includes("%") ? tr_radius : tr_radius + 'px';
@@ -160,19 +157,19 @@ function observe_input_value(dir, value) {
     if (dir == master_dir) {
         master_radius = $('input_' + master_dir).value;
 
-        if (master_dir != 'tl' && is_master_radius['tl']) $('input_tl').value = master_radius;
-        if (master_dir != 'tr' && is_master_radius['tr']) $('input_tr').value = master_radius;
-        if (master_dir != 'br' && is_master_radius['br']) $('input_br').value = master_radius;
-        if (master_dir != 'bl' && is_master_radius['bl']) $('input_bl').value = master_radius;
+        if (master_dir != 'topLeft' && is_master_radius['tl']) $('input_topLeft').value = master_radius;
+        if (master_dir != 'topRight' && is_master_radius['tr']) $('input_topRight').value = master_radius;
+        if (master_dir != 'bottomRight' && is_master_radius['br']) $('input_bottomRight').value = master_radius;
+        if (master_dir != 'bottomLeft' && is_master_radius['bl']) $('input_bottomLeft').value = master_radius;
 
     } else if (value != master_radius) {
         is_master_radius[dir] = false;
     }
 
-    atualizarClasseInput('tl');
-    atualizarClasseInput('tr');
-    atualizarClasseInput('br');
-    atualizarClasseInput('bl');
+    atualizarClasseInput('topLeft');
+    atualizarClasseInput('topRight');
+    atualizarClasseInput('bottomRight');
+    atualizarClasseInput('bottomLeft');
 
     atalizarTextArea();
     aplicarRadio();
@@ -211,43 +208,43 @@ function focus_textarea() {
     setTimeout("$('code').activate()", 100);
 }
 
-new Form.Element.Observer('input_tl', 0.15, function (el, value) {
-    observe_input_value('tl', value)
+new Form.Element.Observer('input_topLeft', 0.15, function (el, value) {
+    observe_input_value('topLeft', value)
 });
-new Form.Element.Observer('input_tr', 0.15, function (el, value) {
-    observe_input_value('tr', value)
+new Form.Element.Observer('input_topRight', 0.15, function (el, value) {
+    observe_input_value('topRight', value)
 });
-new Form.Element.Observer('input_bl', 0.15, function (el, value) {
-    observe_input_value('bl', value)
+new Form.Element.Observer('input_bottomLeft', 0.15, function (el, value) {
+    observe_input_value('bottomLeft', value)
 });
-new Form.Element.Observer('input_br', 0.15, function (el, value) {
-    observe_input_value('br', value)
-});
-
-$('input_tl').observe('keydown', function (e) {
-    observarKeydownInput(e, 'tl')
-});
-$('input_tr').observe('keydown', function (e) {
-    observarKeydownInput(e, 'tr')
-});
-$('input_bl').observe('keydown', function (e) {
-    observarKeydownInput(e, 'bl')
-});
-$('input_br').observe('keydown', function (e) {
-    observarKeydownInput(e, 'br')
+new Form.Element.Observer('input_bottomRight', 0.15, function (el, value) {
+    observe_input_value('bottomRight', value)
 });
 
-$('input_tl').observe('click', function (e) {
-    $('input_tl').activate()
+$('input_topLeft').observe('keydown', function (e) {
+    observarKeydownInput(e, 'topLeft')
 });
-$('input_tr').observe('click', function (e) {
-    $('input_tr').activate()
+$('input_topRight').observe('keydown', function (e) {
+    observarKeydownInput(e, 'topRight')
 });
-$('input_bl').observe('click', function (e) {
-    $('input_bl').activate()
+$('input_bottomLeft').observe('keydown', function (e) {
+    observarKeydownInput(e, 'bottomLeft')
 });
-$('input_br').observe('click', function (e) {
-    $('input_br').activate()
+$('input_bottomRight').observe('keydown', function (e) {
+    observarKeydownInput(e, 'bottomRight')
+});
+
+$('input_topLeft').observe('click', function (e) {
+    $('input_topLeft').activate()
+});
+$('input_topRight').observe('click', function (e) {
+    $('input_topRight').activate()
+});
+$('input_bottomLeft').observe('click', function (e) {
+    $('input_bottomLeft').activate()
+});
+$('input_bottomRight').observe('click', function (e) {
+    $('input_bottomRight').activate()
 });
 
 new Form.Element.Observer('opt_css3', 0.15, function (el) {

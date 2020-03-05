@@ -15,20 +15,20 @@
     <div id="logo">CSS Border Radius</div>
     <div id="container">
         <div class="input_wrapper" id="input_wrapper_tl">
-            <input type="text" id="input_tl" class="chars_1 form-control form-control-sm" value="0" onkeypress="return observe_input_keypress(event)">
+            <input type="text" id="input_topLeft" class="chars_1 form-control form-control-sm" value="0" onkeypress="return observe_input_keypress(event)">
         </div>
         <div class="input_wrapper" id="input_wrapper_tr">
-            <input type="text" id="input_tr" class="chars_1 form-control form-control-sm" value="0" onkeypress="return observe_input_keypress(event)">
+            <input type="text" id="input_topRight" class="chars_1 form-control form-control-sm" value="0" onkeypress="return observe_input_keypress(event)">
         </div>
         <div class="input_wrapper" id="input_wrapper_br">
-            <input type="text" id="input_br" class="chars_1 form-control form-control-sm" value="0" onkeypress="return observe_input_keypress(event)">
+            <input type="text" id="input_bottomRight" class="chars_1 form-control form-control-sm" value="0" onkeypress="return observe_input_keypress(event)">
         </div>
         <div class="input_wrapper" id="input_wrapper_bl">
-            <input type="text" id="input_bl" class="chars_1 form-control form-control-sm" value="0" onkeypress="return observe_input_keypress(event)">
+            <input type="text" id="input_bottomLeft" class="chars_1 form-control form-control-sm" value="0" onkeypress="return observe_input_keypress(event)">
         </div>
 
-        <div id="surface" style="overflow:auto;">
-            <textarea style="overflow:scroll;" id="code" class="col" readonly="readonly"></textarea>
+        <div id="surface" style="overflow:auto; ">
+            <textarea id="code" style="overflow: scroll; overflow-x: hidden;" class="col txtCode" readonly="readonly"></textarea>
 
             <div id="options">
 
