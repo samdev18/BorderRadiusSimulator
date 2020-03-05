@@ -130,21 +130,21 @@ function aplicarRadio() {
     var bl_radius = $('input_bl').value > 125 ? 125 : (!$('input_bl').value ? 0 : $('input_bl').value.strip());
     console.log(tl_radius.toString().includes("%") ? tr_radius : tr_radius + 'px');
     if ($('surface').style.borderTopLeftRadius != 'undefined') {
-        $('surface').style.borderTopLeftRadius = tl_radius.toString().includes("%") ? tr_radius : tr_radius + 'px';
+        $('surface').style.borderTopLeftRadius = tl_radius.toString().includes("%") ? tl_radius : tl_radius + 'px';
         $('surface').style.borderTopRightRadius = tr_radius.toString().includes("%") ? tr_radius : tr_radius + 'px';
         $('surface').style.borderBottomRightRadius = br_radius.toString().includes("%") ? br_radius : br_radius + 'px';
         $('surface').style.borderBottomLeftRadius = bl_radius.toString().includes("%") ? bl_radius : bl_radius + 'px';
     }
 
     if ($('surface').style.WebkitBorderTopLeftRadius != 'undefined') {
-        $('surface').style.WebkitBorderTopLeftRadius = tl_radius.toString().includes("%") ? tr_radius : tr_radius + 'px';
+        $('surface').style.WebkitBorderTopLeftRadius = tl_radius.toString().includes("%") ? tl_radius : tl_radius + 'px';
         $('surface').style.WebkitBorderTopRightRadius = tr_radius.toString().includes("%") ? tr_radius : tr_radius + 'px';
         $('surface').style.WebkitBorderBottomRightRadius = br_radius.toString().includes("%") ? br_radius : br_radius + 'px';
         $('surface').style.WebkitBorderBottomLeftRadius = bl_radius.toString().includes("%") ? bl_radius : bl_radius + 'px';
     }
 
     if ($('surface').style.MozBorderRadiusTopright != 'undefined') {
-        $('surface').style.MozBorderRadiusTopleft = tl_radius.toString().includes("%") ? tr_radius : tr_radius + 'px';
+        $('surface').style.MozBorderRadiusTopleft = tl_radius.toString().includes("%") ? tl_radius : tl_radius + 'px';
         $('surface').style.MozBorderRadiusTopright = tr_radius.toString().includes("%") ? tr_radius : tr_radius + 'px';
         $('surface').style.MozBorderRadiusBottomright = br_radius.toString().includes("%") ? br_radius : br_radius + 'px';
         $('surface').style.MozBorderRadiusBottomleft = bl_radius.toString().includes("%") ? bl_radius : bl_radius + 'px';

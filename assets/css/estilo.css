@@ -45,6 +45,21 @@
      text-align: right;
  }
 
+ ::-webkit-scrollbar {
+     background-color: #ddd;
+     width: 14px;
+ }
+
+ ::-webkit-scrollbar-track {
+     box-shadow: inset 0 0 10px #00000070;
+     border-radius: 15px;
+ }
+
+ ::-webkit-scrollbar-thumb {
+     background: linear-gradient(125deg, purple, #3498db, purple);
+     border-radius: 10px;
+ }
+
  #container .input_wrapper#input_wrapper_br {
      bottom: -2px;
      right: -115px;
